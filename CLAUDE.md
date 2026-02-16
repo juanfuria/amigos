@@ -45,15 +45,18 @@ Single-process Compose Desktop app with four layers:
 - `MacNotifier` sends native macOS notifications via `osascript` (AppleScript) through `ProcessBuilder`
 
 **UI** (`com.efetepe.amigos.ui`):
-- `ActionWindow` — popup when nudge fires: friend name, "Open [App]" deep-link, Done/Snooze/Skip
-- `AddFriendDialog` — form with name, notes, frequency, and dynamic channel list
+- `MainWindow` — single main window with `NavigationRail` sidebar (Friends, Log, Settings tabs)
+- `FriendsTab` — friend list with cards (edit/delete), inline add/edit form using `AddFriendDialogContent`
+- `AddFriendDialog` — reusable form with name, notes, frequency, and dynamic channel list (accepts `title` param for add vs edit)
+- `ActionWindow` — separate small popup when nudge fires: friend name, "Open [App]" deep-link, Done/Snooze/Skip
 - `LogView` — scrollable contact history
 - `SettingsView` — nudges/week, active hours, notification days (FilterChip selection)
 - `DeepLinker` — opens messaging apps via `java.awt.Desktop.browse()` with URI schemes
 
 **Main** (`com.efetepe.amigos.Main`):
-- `AppScreen` enum drives window routing (NONE = tray only, ACTION, ADD_FRIEND, LOG, SETTINGS)
-- System tray icon with right-click menu is the app's home state
+- Main window hides to tray on close (app keeps running for scheduler)
+- Nudge popup is a separate small window
+- Tray icon loads from `src/main/resources/tray-icon.png` if present, falls back to generated purple circle
 
 ## Key Patterns
 
