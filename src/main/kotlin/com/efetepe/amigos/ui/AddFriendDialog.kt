@@ -86,7 +86,7 @@ fun AddFriendDialogContent(
                         value = channel.address,
                         onValueChange = { newAddr ->
                             channels = channels.toMutableList().apply {
-                                this[index] = channel.copy(address = newAddr)
+                                this[index] = channel.copy(address = newAddr.filterNot { it.isWhitespace() })
                             }
                         },
                         label = { Text("Address") },
