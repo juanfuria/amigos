@@ -65,7 +65,11 @@ fun AddFriendDialogContent(
                 ) {
                     var expanded by remember { mutableStateOf(false) }
                     Box(modifier = Modifier.weight(0.35f)) {
-                        OutlinedButton(onClick = { expanded = true }, modifier = Modifier.fillMaxWidth()) {
+                        ElevatedButton(
+                            onClick = { expanded = true },
+                            modifier = Modifier.fillMaxWidth(),
+                            shape = MaterialTheme.shapes.small
+                        ) {
                             Text(channel.type.displayName)
                         }
                         DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
@@ -105,10 +109,18 @@ fun AddFriendDialogContent(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                OutlinedButton(onClick = onCancel, modifier = Modifier.weight(1f)) {
+                ElevatedButton(
+                    onClick = onCancel,
+                    modifier = Modifier.weight(1f),
+                    shape = MaterialTheme.shapes.small,
+                    colors = ButtonDefaults.elevatedButtonColors(
+                        containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                        contentColor = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                ) {
                     Text("Cancel")
                 }
-                Button(
+                ElevatedButton(
                     onClick = {
                         val freq = frequency.toIntOrNull() ?: 30
                         val validChannels = channels.filter { it.address.isNotBlank() }
@@ -116,7 +128,12 @@ fun AddFriendDialogContent(
                         onSave(name, notes.ifBlank { null }, freq, validChannels)
                     },
                     modifier = Modifier.weight(1f),
-                    enabled = name.isNotBlank() && channels.any { it.address.isNotBlank() }
+                    enabled = name.isNotBlank() && channels.any { it.address.isNotBlank() },
+                    shape = MaterialTheme.shapes.small,
+                    colors = ButtonDefaults.elevatedButtonColors(
+                        containerColor = MaterialTheme.colorScheme.primary,
+                        contentColor = MaterialTheme.colorScheme.onPrimary
+                    )
                 ) {
                     Text("Save")
                 }

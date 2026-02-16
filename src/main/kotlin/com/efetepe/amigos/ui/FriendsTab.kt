@@ -103,7 +103,14 @@ private fun FriendsList(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text("Friends", style = MaterialTheme.typography.titleLarge)
-            Button(onClick = onAdd) { Text("Add Friend") }
+            ElevatedButton(
+                onClick = onAdd,
+                shape = MaterialTheme.shapes.small,
+                colors = ButtonDefaults.elevatedButtonColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+                )
+            ) { Text("Add Friend") }
         }
 
         Spacer(modifier = Modifier.height(16.dp))

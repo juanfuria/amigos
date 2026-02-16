@@ -64,11 +64,16 @@ fun SettingsViewContent(
 
             Spacer(modifier = Modifier.weight(1f))
 
-            Button(
+            ElevatedButton(
                 onClick = {
                     onSave(nudges.toIntOrNull() ?: 3, start, end, selectedDays.toList().sorted())
                 },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                shape = MaterialTheme.shapes.small,
+                colors = ButtonDefaults.elevatedButtonColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+                )
             ) {
                 Text("Save")
             }

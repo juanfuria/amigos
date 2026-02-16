@@ -57,9 +57,14 @@ fun ActionWindowContent(
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            Button(
+            ElevatedButton(
                 onClick = onOpenApp,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                shape = MaterialTheme.shapes.small,
+                colors = ButtonDefaults.elevatedButtonColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+                )
             ) {
                 Text("Open ${state.channelType.displayName}")
             }
@@ -70,13 +75,37 @@ fun ActionWindowContent(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                OutlinedButton(onClick = onSkip, modifier = Modifier.weight(1f)) {
+                ElevatedButton(
+                    onClick = onSkip,
+                    modifier = Modifier.weight(1f),
+                    shape = MaterialTheme.shapes.small,
+                    colors = ButtonDefaults.elevatedButtonColors(
+                        containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                        contentColor = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                ) {
                     Text("Skip")
                 }
-                OutlinedButton(onClick = onSnooze, modifier = Modifier.weight(1f)) {
+                ElevatedButton(
+                    onClick = onSnooze,
+                    modifier = Modifier.weight(1f),
+                    shape = MaterialTheme.shapes.small,
+                    colors = ButtonDefaults.elevatedButtonColors(
+                        containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                        contentColor = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                ) {
                     Text("Snooze")
                 }
-                Button(onClick = onDone, modifier = Modifier.weight(1f)) {
+                ElevatedButton(
+                    onClick = onDone,
+                    modifier = Modifier.weight(1f),
+                    shape = MaterialTheme.shapes.small,
+                    colors = ButtonDefaults.elevatedButtonColors(
+                        containerColor = MaterialTheme.colorScheme.primary,
+                        contentColor = MaterialTheme.colorScheme.onPrimary
+                    )
+                ) {
                     Text("Done")
                 }
             }
