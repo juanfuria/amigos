@@ -15,7 +15,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 
-fun main() = application {
+fun main() {
+    // Set macOS dock icon before any UI loads
+    setDockIcon()
+
+    application {
     val db = remember { DatabaseFactory.create() }
     val friendRepo = remember { FriendRepository(db) }
     val settingsRepo = remember { SettingsRepository(db) }
@@ -91,6 +95,17 @@ fun main() = application {
                 )
             }
         }
+    }
+  }
+}
+
+private fun setDockIcon() {
+    try {
+        val resourceStream = object {}.javaClass.getResourceAsStream("/tray-icon.png") ?: return
+        val image = javax.imageio.ImageIO.read(resourceStream)
+        java.awt.Taskbar.getTaskbar().iconImage = image
+    } catch (_: Exception) {
+        // Taskbar API not available on all platforms
     }
 }
 
