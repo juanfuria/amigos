@@ -41,16 +41,11 @@ compose.desktop {
             targetFormats(TargetFormat.Dmg)
             packageName = "Amigos"
             packageVersion = "1.0.0"
+            modules("java.sql")
             macOS {
                 bundleID = "com.efetepe.amigos"
                 dockName = "Amigos"
                 iconFile.set(project.file("src/main/packaging/icon.icns"))
-                infoPlist {
-                    extraKeysRawXml = """
-                        <key>LSUIElement</key>
-                        <true/>
-                    """.trimIndent()
-                }
             }
         }
     }
