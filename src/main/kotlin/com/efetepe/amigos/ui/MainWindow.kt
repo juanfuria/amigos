@@ -3,6 +3,7 @@ package com.efetepe.amigos.ui
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
@@ -12,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import com.efetepe.amigos.data.FriendRepository
 import com.efetepe.amigos.data.SettingsRepository
 
-enum class MainTab { FRIENDS, LOG, SETTINGS }
+enum class MainTab { FRIENDS, LOG, SETTINGS, ABOUT }
 
 @Composable
 fun MainWindowContent(
@@ -42,6 +43,12 @@ fun MainWindowContent(
                     label = { Text("Settings") },
                     selected = selectedTab == MainTab.SETTINGS,
                     onClick = { selectedTab = MainTab.SETTINGS }
+                )
+                NavigationRailItem(
+                    icon = { Icon(Icons.Default.Info, contentDescription = "About") },
+                    label = { Text("About") },
+                    selected = selectedTab == MainTab.ABOUT,
+                    onClick = { selectedTab = MainTab.ABOUT }
                 )
             }
 
@@ -76,6 +83,7 @@ fun MainWindowContent(
                         }
                     )
                 }
+                MainTab.ABOUT -> AboutViewContent()
             }
         }
     }
