@@ -43,6 +43,14 @@ compose.desktop {
             packageVersion = "1.0.0"
             macOS {
                 bundleID = "com.efetepe.amigos"
+                dockName = "Amigos"
+                iconFile.set(project.file("src/main/packaging/icon.icns"))
+                infoPlist {
+                    extraKeysRawXml = """
+                        <key>LSUIElement</key>
+                        <true/>
+                    """.trimIndent()
+                }
             }
         }
     }
