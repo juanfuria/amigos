@@ -12,7 +12,13 @@ object DatabaseFactory {
         val dbPath = File(dbDir, DB_NAME).absolutePath
 
         val driver = JdbcSqliteDriver("jdbc:sqlite:$dbPath")
-        AmigosDatabase.Schema.create(driver)
+
+        // Only create schema if tables don't exist yet
+        try {
+            AmigosDatabase.Schema.create(driver)
+        } catch (_: Exception) {
+            // Tables already exist — this is a subsequent launch
+        }
 
         return AmigosDatabase(driver)
     }
