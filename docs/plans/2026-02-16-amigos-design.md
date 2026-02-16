@@ -48,8 +48,8 @@ Friends who live far away get forgotten — not because you don't care, but beca
 | Key | Default | Notes |
 |-----|---------|-------|
 | nudges_per_week | 3 | How many friends to suggest per week |
-| quiet_hours_start | 09:00 | Don't notify before this time |
-| quiet_hours_end | 21:00 | Don't notify after this time |
+| active_hours_start | 09:00 | Don't notify before this time |
+| active_hours_end | 21:00 | Don't notify after this time |
 | notification_days | MON,WED,FRI | Which days to send nudges |
 
 ## Scheduling Algorithm
@@ -65,7 +65,7 @@ Friends who live far away get forgotten — not because you don't care, but beca
 3. Add small random factor to avoid predictability
 4. Never pick the same friend consecutively (unless they're the only one due)
 
-**Timing:** Distribute nudges across configured days at random times within quiet-hours window.
+**Timing:** Distribute nudges across configured days at random times within active-hours window.
 
 ## Notification & Action Flow
 

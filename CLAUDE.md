@@ -48,7 +48,7 @@ Single-process Compose Desktop app with four layers:
 - `ActionWindow` — popup when nudge fires: friend name, "Open [App]" deep-link, Done/Snooze/Skip
 - `AddFriendDialog` — form with name, notes, frequency, and dynamic channel list
 - `LogView` — scrollable contact history
-- `SettingsView` — nudges/week, quiet hours, notification days (FilterChip selection)
+- `SettingsView` — nudges/week, active hours, notification days (FilterChip selection)
 - `DeepLinker` — opens messaging apps via `java.awt.Desktop.browse()` with URI schemes
 
 **Main** (`com.efetepe.amigos.Main`):

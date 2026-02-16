@@ -19,11 +19,11 @@ class SettingsRepositoryTest {
     }
 
     @Test
-    fun `set and get quietHours`() {
-        repo.quietHoursStart = "10:00"
-        repo.quietHoursEnd = "22:00"
-        assertEquals("10:00", repo.quietHoursStart)
-        assertEquals("22:00", repo.quietHoursEnd)
+    fun `set and get activeHours`() {
+        repo.activeHoursStart = "10:00"
+        repo.activeHoursEnd = "22:00"
+        assertEquals("10:00", repo.activeHoursStart)
+        assertEquals("22:00", repo.activeHoursEnd)
     }
 
     @Test

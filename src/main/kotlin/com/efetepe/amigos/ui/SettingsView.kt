@@ -9,15 +9,15 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun SettingsViewContent(
     nudgesPerWeek: Int,
-    quietStart: String,
-    quietEnd: String,
+    activeStart: String,
+    activeEnd: String,
     notificationDays: List<String>,
     onSave: (nudges: Int, start: String, end: String, days: List<String>) -> Unit,
     onClose: () -> Unit
 ) {
     var nudges by remember { mutableStateOf(nudgesPerWeek.toString()) }
-    var start by remember { mutableStateOf(quietStart) }
-    var end by remember { mutableStateOf(quietEnd) }
+    var start by remember { mutableStateOf(activeStart) }
+    var end by remember { mutableStateOf(activeEnd) }
     val allDays = listOf("MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN")
     var selectedDays by remember { mutableStateOf(notificationDays.toSet()) }
 
@@ -45,13 +45,13 @@ fun SettingsViewContent(
                 OutlinedTextField(
                     value = start,
                     onValueChange = { start = it },
-                    label = { Text("Quiet hours start") },
+                    label = { Text("Active hours start") },
                     modifier = Modifier.weight(1f)
                 )
                 OutlinedTextField(
                     value = end,
                     onValueChange = { end = it },
-                    label = { Text("Quiet hours end") },
+                    label = { Text("Active hours end") },
                     modifier = Modifier.weight(1f)
                 )
             }

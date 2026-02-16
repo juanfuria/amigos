@@ -136,13 +136,13 @@ fun main() = application {
             ) {
                 SettingsViewContent(
                     nudgesPerWeek = settingsRepo.nudgesPerWeek,
-                    quietStart = settingsRepo.quietHoursStart,
-                    quietEnd = settingsRepo.quietHoursEnd,
+                    activeStart = settingsRepo.activeHoursStart,
+                    activeEnd = settingsRepo.activeHoursEnd,
                     notificationDays = settingsRepo.notificationDays,
                     onSave = { nudges, start, end, days ->
                         settingsRepo.nudgesPerWeek = nudges
-                        settingsRepo.quietHoursStart = start
-                        settingsRepo.quietHoursEnd = end
+                        settingsRepo.activeHoursStart = start
+                        settingsRepo.activeHoursEnd = end
                         settingsRepo.notificationDays = days
                         currentScreen = AppScreen.NONE
                     },

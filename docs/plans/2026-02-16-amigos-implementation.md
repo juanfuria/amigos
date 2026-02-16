@@ -529,11 +529,11 @@ class SettingsRepositoryTest {
     }
 
     @Test
-    fun `set and get quietHours`() {
-        repo.quietHoursStart = "10:00"
-        repo.quietHoursEnd = "22:00"
-        assertEquals("10:00", repo.quietHoursStart)
-        assertEquals("22:00", repo.quietHoursEnd)
+    fun `set and get activeHours`() {
+        repo.activeHoursStart = "10:00"
+        repo.activeHoursEnd = "22:00"
+        assertEquals("10:00", repo.activeHoursStart)
+        assertEquals("22:00", repo.activeHoursEnd)
     }
 
     @Test
@@ -568,13 +568,13 @@ class SettingsRepository(private val db: AmigosDatabase) {
         get() = get("nudges_per_week", "3").toInt()
         set(value) = set("nudges_per_week", value.toString())
 
-    var quietHoursStart: String
-        get() = get("quiet_hours_start", "09:00")
-        set(value) = set("quiet_hours_start", value)
+    var activeHoursStart: String
+        get() = get("active_hours_start", "09:00")
+        set(value) = set("active_hours_start", value)
 
-    var quietHoursEnd: String
-        get() = get("quiet_hours_end", "21:00")
-        set(value) = set("quiet_hours_end", value)
+    var activeHoursEnd: String
+        get() = get("active_hours_end", "21:00")
+        set(value) = set("active_hours_end", value)
 
     var notificationDays: List<String>
         get() = get("notification_days", "MON,WED,FRI").split(",")
@@ -990,8 +990,8 @@ class Scheduler(
 
         if (dayName !in settingsRepo.notificationDays) return false
 
-        val startTime = LocalTime.parse(settingsRepo.quietHoursStart)
-        val endTime = LocalTime.parse(settingsRepo.quietHoursEnd)
+        val startTime = LocalTime.parse(settingsRepo.activeHoursStart)
+        val endTime = LocalTime.parse(settingsRepo.activeHoursEnd)
         return localNow.time in startTime..endTime
     }
 
@@ -1400,15 +1400,15 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun SettingsViewContent(
     nudgesPerWeek: Int,
-    quietStart: String,
-    quietEnd: String,
+    activeStart: String,
+    activeEnd: String,
     notificationDays: List<String>,
     onSave: (nudges: Int, start: String, end: String, days: List<String>) -> Unit,
     onClose: () -> Unit
 ) {
     var nudges by remember { mutableStateOf(nudgesPerWeek.toString()) }
-    var start by remember { mutableStateOf(quietStart) }
-    var end by remember { mutableStateOf(quietEnd) }
+    var start by remember { mutableStateOf(activeStart) }
+    var end by remember { mutableStateOf(activeEnd) }
     val allDays = listOf("MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN")
     var selectedDays by remember { mutableStateOf(notificationDays.toSet()) }
 
@@ -1436,13 +1436,13 @@ fun SettingsViewContent(
                 OutlinedTextField(
                     value = start,
                     onValueChange = { start = it },
-                    label = { Text("Quiet hours start") },
+                    label = { Text("Active hours start") },
                     modifier = Modifier.weight(1f)
                 )
                 OutlinedTextField(
                     value = end,
                     onValueChange = { end = it },
-                    label = { Text("Quiet hours end") },
+                    label = { Text("Active hours end") },
                     modifier = Modifier.weight(1f)
                 )
             }
@@ -1634,13 +1634,13 @@ fun main() = application {
             ) {
                 SettingsViewContent(
                     nudgesPerWeek = settingsRepo.nudgesPerWeek,
-                    quietStart = settingsRepo.quietHoursStart,
-                    quietEnd = settingsRepo.quietHoursEnd,
+                    activeStart = settingsRepo.activeHoursStart,
+                    activeEnd = settingsRepo.activeHoursEnd,
                     notificationDays = settingsRepo.notificationDays,
                     onSave = { nudges, start, end, days ->
                         settingsRepo.nudgesPerWeek = nudges
-                        settingsRepo.quietHoursStart = start
-                        settingsRepo.quietHoursEnd = end
+                        settingsRepo.activeHoursStart = start
+                        settingsRepo.activeHoursEnd = end
                         settingsRepo.notificationDays = days
                         currentScreen = AppScreen.NONE
                     },

@@ -13,13 +13,13 @@ class SettingsRepository(private val db: AmigosDatabase) {
         get() = get("nudges_per_week", "3").toInt()
         set(value) = set("nudges_per_week", value.toString())
 
-    var quietHoursStart: String
-        get() = get("quiet_hours_start", "09:00")
-        set(value) = set("quiet_hours_start", value)
+    var activeHoursStart: String
+        get() = get("active_hours_start", "09:00")
+        set(value) = set("active_hours_start", value)
 
-    var quietHoursEnd: String
-        get() = get("quiet_hours_end", "21:00")
-        set(value) = set("quiet_hours_end", value)
+    var activeHoursEnd: String
+        get() = get("active_hours_end", "21:00")
+        set(value) = set("active_hours_end", value)
 
     var notificationDays: List<String>
         get() = get("notification_days", "MON,WED,FRI").split(",")

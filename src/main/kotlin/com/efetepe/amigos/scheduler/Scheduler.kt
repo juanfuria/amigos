@@ -68,8 +68,8 @@ class Scheduler(
 
         if (dayName !in settingsRepo.notificationDays) return false
 
-        val startTime = LocalTime.parse(settingsRepo.quietHoursStart)
-        val endTime = LocalTime.parse(settingsRepo.quietHoursEnd)
+        val startTime = LocalTime.parse(settingsRepo.activeHoursStart)
+        val endTime = LocalTime.parse(settingsRepo.activeHoursEnd)
         return localNow.time in startTime..endTime
     }
 
