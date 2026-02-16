@@ -16,6 +16,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 
 fun main() {
+    LaunchAgentInstaller.installIfNeeded()
+
     application {
     val db = remember { DatabaseFactory.create() }
     val friendRepo = remember { FriendRepository(db) }
