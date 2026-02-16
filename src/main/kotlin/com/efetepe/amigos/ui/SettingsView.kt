@@ -12,8 +12,7 @@ fun SettingsViewContent(
     activeStart: String,
     activeEnd: String,
     notificationDays: List<String>,
-    onSave: (nudges: Int, start: String, end: String, days: List<String>) -> Unit,
-    onClose: () -> Unit
+    onSave: (nudges: Int, start: String, end: String, days: List<String>) -> Unit
 ) {
     var nudges by remember { mutableStateOf(nudgesPerWeek.toString()) }
     var start by remember { mutableStateOf(activeStart) }
@@ -26,13 +25,7 @@ fun SettingsViewContent(
             modifier = Modifier.padding(24.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Text("Settings", style = MaterialTheme.typography.titleLarge)
-                TextButton(onClick = onClose) { Text("Close") }
-            }
+            Text("Settings", style = MaterialTheme.typography.titleLarge)
 
             OutlinedTextField(
                 value = nudges,

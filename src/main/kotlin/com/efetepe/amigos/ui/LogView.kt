@@ -17,16 +17,10 @@ data class LogEntry(
 )
 
 @Composable
-fun LogViewContent(entries: List<LogEntry>, onClose: () -> Unit) {
+fun LogViewContent(entries: List<LogEntry>) {
     Surface(modifier = Modifier.fillMaxSize()) {
         Column(modifier = Modifier.padding(24.dp)) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Text("Contact Log", style = MaterialTheme.typography.titleLarge)
-                TextButton(onClick = onClose) { Text("Close") }
-            }
+            Text("Contact Log", style = MaterialTheme.typography.titleLarge)
 
             Spacer(modifier = Modifier.height(16.dp))
 

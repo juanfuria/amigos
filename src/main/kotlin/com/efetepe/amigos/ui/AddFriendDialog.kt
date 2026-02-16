@@ -15,6 +15,7 @@ data class ChannelInput(
 
 @Composable
 fun AddFriendDialogContent(
+    title: String = "Add Friend",
     initialName: String = "",
     initialNotes: String = "",
     initialFrequency: Int = 30,
@@ -32,7 +33,7 @@ fun AddFriendDialogContent(
             modifier = Modifier.padding(24.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            Text("Add Friend", style = MaterialTheme.typography.titleLarge)
+            Text(title, style = MaterialTheme.typography.titleLarge)
 
             OutlinedTextField(
                 value = name,
