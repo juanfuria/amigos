@@ -23,6 +23,10 @@ class FriendRepository(private val db: AmigosDatabase) {
         db.friendQueries.deleteById(id)
     }
 
+    fun deleteChannelsByFriendId(friendId: Long) {
+        db.contactChannelQueries.deleteByFriendId(friendId)
+    }
+
     fun addChannel(friendId: Long, type: ChannelType, address: String, preferred: Boolean) {
         db.contactChannelQueries.insert(friendId, type.name, address, if (preferred) 1L else 0L)
     }
