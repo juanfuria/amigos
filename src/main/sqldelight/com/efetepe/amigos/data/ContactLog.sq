@@ -1,0 +1,27 @@
+CREATE TABLE contact_log (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    friend_id INTEGER NOT NULL REFERENCES friend(id) ON DELETE CASCADE,
+    channel_type TEXT NOT NULL,
+    prompted_at TEXT NOT NULL,
+    contacted_at TEXT,
+    skipped INTEGER NOT NULL DEFAULT 0
+);
+
+selectByFriendId:
+SELECT * FROM contact_log WHERE friend_id = ? ORDER BY prompted_at DESC;
+
+selectAll:
+SELECT * FROM contact_log ORDER BY prompted_at DESC;
+
+lastContactForFriend:
+SELECT MAX(contacted_at) AS last_contacted FROM contact_log WHERE friend_id = ? AND contacted_at IS NOT NULL;
+
+insert:
+INSERT INTO contact_log (friend_id, channel_type, prompted_at, skipped)
+VALUES (?, ?, ?, ?);
+
+markContacted:
+UPDATE contact_log SET contacted_at = ?, skipped = 0 WHERE id = ?;
+
+markSkipped:
+UPDATE contact_log SET skipped = 1 WHERE id = ?;

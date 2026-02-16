@@ -1,0 +1,22 @@
+CREATE TABLE friend (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    notes TEXT,
+    desired_frequency_days INTEGER NOT NULL DEFAULT 30
+);
+
+selectAll:
+SELECT * FROM friend ORDER BY name;
+
+selectById:
+SELECT * FROM friend WHERE id = ?;
+
+insert:
+INSERT INTO friend (name, notes, desired_frequency_days)
+VALUES (?, ?, ?);
+
+update:
+UPDATE friend SET name = ?, notes = ?, desired_frequency_days = ? WHERE id = ?;
+
+deleteById:
+DELETE FROM friend WHERE id = ?;
